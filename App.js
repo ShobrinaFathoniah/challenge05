@@ -1,12 +1,8 @@
-import {Text, View} from 'react-native';
 import React from 'react';
+import Root from './src/routers';
 
 const App = () => {
-  return (
-    <View>
-      <Text>App</Text>
-    </View>
-  );
+  return <Root />;
 };
 
 export default App;
