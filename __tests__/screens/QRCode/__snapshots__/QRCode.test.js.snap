@@ -1,0 +1,9 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Test Snapshoot QRCode Snapshoot 1`] = `
+<View>
+  <Text>
+    QRCode
+  </Text>
+</View>
+`;
