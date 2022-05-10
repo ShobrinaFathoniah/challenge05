@@ -26,7 +26,7 @@ const MainStack = () => {
 };
 
 const MainApp = () => (
-  <Tab.Navigator screenOptions={{headerShown: false}}>
+  <Tab.Navigator screenOptions={{headerShown: false}} initialRouteName="Home">
     <Tab.Screen
       options={{
         tabBarLabel: 'QRCode',
