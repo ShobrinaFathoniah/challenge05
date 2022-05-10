@@ -22,3 +22,11 @@ jest.mock('@react-native-firebase/app', () => {
     getInitialNotification: jest.fn(() => Promise.resolve()),
   };
 });
+
+jest.mock('@react-navigation/core', () => {
+  return {
+    addEventListener: jest.fn(),
+    requestPermissions: jest.fn(() => Promise.resolve()),
+    getInitialNotification: jest.fn(() => Promise.resolve()),
+  };
+});

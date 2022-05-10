@@ -1,5 +1,5 @@
 import React from 'react';
-import {Maps} from '../../../src/screens';
+import Maps from '../../../src/screens/Maps';
 import {create} from 'react-test-renderer';
 
 describe('Test Snapshoot', () => {
