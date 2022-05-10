@@ -1,12 +1,12 @@
 import {View, Text} from 'react-native';
 import React from 'react';
 
-const Register = () => {
+const QRCode = () => {
   return (
     <View>
-      <Text>Register</Text>
+      <Text>QRCode</Text>
     </View>
   );
 };
 
-export default Register;
+export default QRCode;

@@ -1,6 +1,6 @@
 import Home from './Home';
 import Login from './Login';
-import Register from './Register';
+import QRCode from './QRCode';
 import Maps from './Maps';
 
-export {Home, Login, Register, Maps};
+export {Home, Login, QRCode, Maps};

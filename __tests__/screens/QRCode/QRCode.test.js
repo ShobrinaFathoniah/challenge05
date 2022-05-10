@@ -1,12 +1,12 @@
 import React from 'react';
-import Register from '../../../src/screens/Register';
+import {QRCode} from '../../../src/screens';
 import {create} from 'react-test-renderer';
 
 describe('Test Snapshoot', () => {
-  test('Register Snapshoot', () => {
+  test('QRCode Snapshoot', () => {
     jest.useFakeTimers();
 
-    const snap = create(<Register />);
+    const snap = create(<QRCode />);
     expect(snap).toMatchSnapshot();
   });
 });
