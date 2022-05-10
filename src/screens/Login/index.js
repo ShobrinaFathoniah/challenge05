@@ -9,7 +9,9 @@ const Login = ({navigation}) => {
   const loginScreen = () => {
     return (
       <View testID="LoginScreen">
-        <Forms onPressButton={() => navigation.navigate('MainApp')}>
+        <Forms
+          type="Login"
+          onPressButton={() => navigation.navigate('MainApp')}>
           <View>
             <Input
               testID="emailForm"

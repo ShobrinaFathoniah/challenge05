@@ -1,7 +1,7 @@
 import {createStackNavigator} from '@react-navigation/stack';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import React from 'react';
-import {Home, Login, Maps, Register} from '../screens';
+import {Home, Login, Maps, QRCode} from '../screens';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import Fontisto from 'react-native-vector-icons/Fontisto';
 
@@ -11,11 +11,6 @@ const Tab = createBottomTabNavigator();
 const MainStack = () => {
   return (
     <Stack.Navigator initialRouteName="Login">
-      <Stack.Screen
-        name="Register"
-        component={Register}
-        options={{headerShown: false}}
-      />
       <Stack.Screen
         name="Login"
         component={Login}
@@ -32,6 +27,16 @@ const MainStack = () => {
 
 const MainApp = () => (
   <Tab.Navigator screenOptions={{headerShown: false}}>
+    <Tab.Screen
+      options={{
+        tabBarLabel: 'QRCode',
+        tabBarIcon: ({color, size}) => (
+          <Fontisto name="qrcode" color={color} size={size} />
+        ),
+      }}
+      name="QRCode"
+      component={QRCode}
+    />
     <Tab.Screen
       options={{
         tabBarLabel: 'Home',
