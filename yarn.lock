@@ -4768,7 +4768,7 @@ lodash.truncate@^4.4.2:
   resolved "https://registry.yarnpkg.com/lodash.truncate/-/lodash.truncate-4.4.2.tgz#5a350da0b1113b837ecfffd5812cbe58d6eae193"
   integrity sha1-WjUNoLERO4N+z//VgSy+WNbq4ZM=
 
-lodash@^4.17.10, lodash@^4.17.14, lodash@^4.17.15, lodash@^4.17.21, lodash@^4.7.0:
+lodash@^4.14.2, lodash@^4.17.10, lodash@^4.17.14, lodash@^4.17.15, lodash@^4.17.21, lodash@^4.7.0:
   version "4.17.21"
   resolved "https://registry.yarnpkg.com/lodash/-/lodash-4.17.21.tgz#679591c564c3bffaae8454cf0b3df370c3d6911c"
   integrity sha512-v2kDEe57lecTulaDIuNTPy3Ry4gLGJ6Z1O3vE1krgXZNrsQ+LFTGHVxVjcXPs17LhbZVGedAJv8XZ1tvj5FvSg==
@@ -5834,6 +5834,18 @@ react-is@^16.13.0, react-is@^16.13.1, react-is@^16.7.0:
   resolved "https://registry.yarnpkg.com/react-is/-/react-is-16.13.1.tgz#789729a4dc36de2999dc156dd6c1d9c18cea56a4"
   integrity sha512-24e6ynE2H+OKt4kqsOvNd8kBpV65zoxbA4BVsEOB3ARVWQki/DHzaUoC5KuON/BiccDaCCTZBuOcfZs70kR8bQ==
 
+react-native-biometrics@^2.1.4:
+  version "2.1.4"
+  resolved "https://registry.yarnpkg.com/react-native-biometrics/-/react-native-biometrics-2.1.4.tgz#e201e9f18baeb560eeaba8d41fbd4f90d04152fe"
+  integrity sha512-Ek7NmzgHB4rot2DdzV9Q3pzxFjnEFipGSFsmWZw5vcM9vkMoebhz8d8UYgsp0efroyeLITDNHwcFGEzq8XW9Kg==
+
+react-native-camera-kit@^12.1.0:
+  version "12.1.0"
+  resolved "https://registry.yarnpkg.com/react-native-camera-kit/-/react-native-camera-kit-12.1.0.tgz#71149bb11be393ee4af8c6a600c4c4fdf33f83a1"
+  integrity sha512-iysY3YN8i1BWE7qRiLVgjanrGPtVUsczYDY89yqHbZHKWt2iZ5AiVyijTkHTmKXiK+GpclTvYnA415RgO06C3g==
+  dependencies:
+    lodash "^4.14.2"
+
 react-native-codegen@^0.0.17:
   version "0.0.17"
   resolved "https://registry.yarnpkg.com/react-native-codegen/-/react-native-codegen-0.0.17.tgz#83fb814d94061cbd46667f510d2ddba35ffb50ac"
@@ -5887,6 +5899,11 @@ react-native-screens@^3.13.1:
   dependencies:
     react-freeze "^1.0.0"
     warn-once "^0.1.0"
+
+react-native-touch-id@^4.4.1:
+  version "4.4.1"
+  resolved "https://registry.yarnpkg.com/react-native-touch-id/-/react-native-touch-id-4.4.1.tgz#8b1bb2d04c30bac36bb9696d2d723e719c4a8b08"
+  integrity sha512-1jTl8fC+0fxvqegy/XXTyo6vMvPhjzkoDdaqoYZx0OH8AT250NuXnNPyKktvigIcys3+2acciqOeaCall7lrvg==
 
 react-native-vector-icons@^9.1.0:
   version "9.1.0"
