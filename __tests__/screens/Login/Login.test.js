@@ -9,6 +9,5 @@ describe('Test Snapshoot', () => {
 
     const snap = create(ContainerTesting(<Login />));
     expect(snap).toMatchSnapshot();
-    // expect(2 + 2).toEqual(4);
   });
 });
