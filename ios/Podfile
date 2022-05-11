@@ -23,6 +23,8 @@ target 'challenge05' do
 
   pod 'TouchID', :path => '../node_modules/react-native-touch-id'
 
+  pod 'RNFBApp', :path => '../node_modules/@react-native-firebase/app'
+
   pod 'react-native-geolocation', :path => '../node_modules/@react-native-community/geolocation'
 
   target 'challenge05Tests' do
