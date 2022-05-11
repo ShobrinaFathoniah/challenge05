@@ -48,17 +48,20 @@ const Forms = ({type, children, onPressButton}) => {
     } catch (error) {
       if (error.code === statusCodes.SIGN_IN_CANCELLED) {
         // user cancelled the login flow
+        setLoading(false);
         Alert.alert('Notification', 'Login Canceled');
       } else if (error.code === statusCodes.IN_PROGRESS) {
         // operation (e.g. sign in) is in progress already
         setLoading(true);
       } else if (error.code === statusCodes.PLAY_SERVICES_NOT_AVAILABLE) {
         // play services not available or outdated
+        setLoading(false);
         Alert.alert(
           'Notification',
           'Google play services not available or outdated',
         );
       } else {
+        setLoading(false);
         // some other error happened
         Alert.alert('Notification', `${error}`);
       }

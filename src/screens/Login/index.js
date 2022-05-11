@@ -14,29 +14,23 @@ const Login = () => {
 
   const [code, setCode] = useState('');
 
-  // Set an initializing state whilst Firebase connects
-  const [initializing, setInitializing] = useState(true);
-  const [users, setUser] = useState(false);
+  // // Set an initializing state whilst Firebase connects
+  // const [initializing, setInitializing] = useState(true);
+  const [users, setUser] = useState();
 
   useEffect(() => {
     // Handle user state changes
     function onAuthStateChanged(user) {
       setUser(user);
-      if (initializing) {
-        setInitializing(false);
-      }
     }
+
     const subscriber = auth().onAuthStateChanged(onAuthStateChanged);
     console.log(subscriber);
 
     return subscriber; // unsubscribe on unmount
-  }, [initializing]);
+  }, []);
 
-  if (initializing) {
-    return null;
-  }
-
-  if (users.phoneNumber === `${phoneNum}` && confirm) {
+  if (users && confirm) {
     console.log(users);
     navigate('MainApp');
   }
