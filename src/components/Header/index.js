@@ -4,7 +4,7 @@ import {moderateScale} from 'react-native-size-matters';
 import {BLACK, DARK_PURPLE_100} from '../../helpers/colors';
 import {PassionConflict} from '../Fonts';
 
-const Header = ({button = false, radiusBottom = false, text = 'iRead'}) => {
+const Header = ({button = false, radiusBottom = false, text = ''}) => {
   const styles = StyleSheet.create({
     page: {
       flexDirection: 'row',

@@ -12,6 +12,7 @@ const Input = ({
   placeholderTextColor = DARK_PURPLE_500,
   onSubmitEditing,
   testID,
+  keyboardType,
 }) => {
   const passedStyles = Array.isArray(style)
     ? Object.assign({}, ...style)
@@ -28,6 +29,7 @@ const Input = ({
         placeholderTextColor={placeholderTextColor}
         secureTextEntry={secureTextEntry}
         onSubmitEditing={onSubmitEditing}
+        keyboardType={keyboardType}
       />
     </View>
   );
@@ -47,6 +49,6 @@ const styles = StyleSheet.create({
     color: DARK_PURPLE_500,
   },
   containerInput: {
-    alignSelf: 'center',
+    alignSelf: 'flex-start',
   },
 });

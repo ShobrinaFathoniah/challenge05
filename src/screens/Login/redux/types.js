@@ -1,0 +1,3 @@
+export const SET_DATA_USER = 'SET_DATA_USER';
+export const SET_DATA_USER_GOOGLE = 'SET_DATA_USER_GOOGLE';
+export const CONFIRM_CODE = 'CONFIRM_CODE';

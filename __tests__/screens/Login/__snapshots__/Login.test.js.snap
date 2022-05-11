@@ -1,0 +1,267 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Test Snapshoot Login Snapshoot 1`] = `
+<RCTScrollView>
+  <View>
+    <View
+      style={
+        Object {
+          "alignItems": "center",
+          "backgroundColor": "#8180b7",
+          "borderBottomEndRadius": 150,
+          "borderBottomStartRadius": 150,
+          "flexDirection": "row",
+          "justifyContent": "center",
+        }
+      }
+    >
+      <Text
+        style={
+          Array [
+            Object {
+              "fontFamily": "PassionsConflict-Regular",
+            },
+            Object {
+              "color": "#000000",
+              "fontSize": 66,
+              "letterSpacing": 3.142857142857143,
+              "margin": 15.714285714285714,
+              "textAlign": "center",
+            },
+          ]
+        }
+      >
+        Login
+      </Text>
+    </View>
+    <View
+      testID="LoginScreen"
+    >
+      <View
+        testID="FormComponent"
+      >
+        <Image
+          source={
+            Object {
+              "testUri": "../../../src/assets/Image/creativity.png",
+            }
+          }
+          style={
+            Object {
+              "alignSelf": "center",
+              "height": 471.42857142857144,
+              "resizeMode": "contain",
+              "width": 392.85714285714283,
+            }
+          }
+          testID="LoginImage"
+        />
+        <View
+          style={
+            Object {
+              "alignSelf": "center",
+              "flexDirection": "row",
+            }
+          }
+        >
+          <View
+            style={
+              Object {
+                "alignSelf": "flex-start",
+              }
+            }
+          >
+            <TextInput
+              keyboardType="number-pad"
+              onChangeText={[Function]}
+              placeholder="Phone Number"
+              placeholderTextColor="#272b5a"
+              secureTextEntry={false}
+              style={
+                Array [
+                  Object {
+                    "borderBottomWidth": 1.5714285714285714,
+                    "borderColor": "#535487",
+                    "borderRadius": 7.857142857142857,
+                    "color": "#272b5a",
+                    "height": 72.28571428571428,
+                    "marginBottom": 18.857142857142858,
+                    "padding": 15.714285714285714,
+                    "width": 424.2857142857143,
+                  },
+                  Object {
+                    "width": 220,
+                  },
+                ]
+              }
+              testID="phoneNumberForm"
+              value=""
+            />
+          </View>
+          <View
+            accessible={true}
+            collapsable={false}
+            focusable={true}
+            onClick={[Function]}
+            onResponderGrant={[Function]}
+            onResponderMove={[Function]}
+            onResponderRelease={[Function]}
+            onResponderTerminate={[Function]}
+            onResponderTerminationRequest={[Function]}
+            onStartShouldSetResponder={[Function]}
+            style={
+              Object {
+                "alignSelf": "center",
+                "backgroundColor": "#535487",
+                "borderRadius": 4.714285714285714,
+                "margin": 15.714285714285714,
+                "opacity": 1,
+                "padding": 15.714285714285714,
+                "width": 220,
+              }
+            }
+            testID="ButtonLoginRegis"
+          >
+            <Text
+              ellipsizeMode="tail"
+              numberOfLines={0}
+              style={
+                Array [
+                  Object {
+                    "fontFamily": "LibreBaskerville-Regular",
+                  },
+                  Object {
+                    "alignSelf": "center",
+                    "color": "#FFFFFF",
+                    "fontSize": 22,
+                  },
+                ]
+              }
+            >
+              SignIn
+            </Text>
+          </View>
+        </View>
+      </View>
+      <View>
+        <Text
+          ellipsizeMode="tail"
+          numberOfLines={0}
+          style={
+            Array [
+              Object {
+                "fontFamily": "LibreBaskerville-Regular",
+              },
+              Object {
+                "alignSelf": "center",
+                "color": "#000000",
+                "fontSize": 13,
+                "marginTop": 23.57142857142857,
+              },
+            ]
+          }
+        >
+          Or Login With
+        </Text>
+      </View>
+      <View
+        style={
+          Object {
+            "alignSelf": "center",
+            "flexDirection": "row",
+          }
+        }
+      >
+        <View
+          accessible={true}
+          collapsable={false}
+          focusable={true}
+          onClick={[Function]}
+          onResponderGrant={[Function]}
+          onResponderMove={[Function]}
+          onResponderRelease={[Function]}
+          onResponderTerminate={[Function]}
+          onResponderTerminationRequest={[Function]}
+          onStartShouldSetResponder={[Function]}
+          style={
+            Object {
+              "backgroundColor": "#FFFFFF",
+              "borderRadius": 4.714285714285714,
+              "margin": 15.714285714285714,
+              "opacity": 1,
+              "padding": 15.714285714285714,
+            }
+          }
+        >
+          <Text
+            allowFontScaling={false}
+            selectable={false}
+            style={
+              Array [
+                Object {
+                  "color": "#535487",
+                  "fontSize": 24,
+                },
+                undefined,
+                Object {
+                  "fontFamily": "FontAwesome5Free-Solid",
+                  "fontStyle": "normal",
+                  "fontWeight": "normal",
+                },
+                Object {
+                  "fontWeight": "900",
+                },
+              ]
+            }
+          >
+            
+          </Text>
+        </View>
+        <View
+          accessible={true}
+          collapsable={false}
+          focusable={true}
+          onClick={[Function]}
+          onResponderGrant={[Function]}
+          onResponderMove={[Function]}
+          onResponderRelease={[Function]}
+          onResponderTerminate={[Function]}
+          onResponderTerminationRequest={[Function]}
+          onStartShouldSetResponder={[Function]}
+          style={
+            Object {
+              "backgroundColor": "#FFFFFF",
+              "borderRadius": 4.714285714285714,
+              "margin": 15.714285714285714,
+              "opacity": 1,
+              "padding": 15.714285714285714,
+            }
+          }
+        >
+          <Text
+            allowFontScaling={false}
+            selectable={false}
+            style={
+              Array [
+                Object {
+                  "color": "#c4131e",
+                  "fontSize": 24,
+                },
+                undefined,
+                Object {
+                  "fontFamily": "FontAwesome",
+                  "fontStyle": "normal",
+                  "fontWeight": "normal",
+                },
+                Object {},
+              ]
+            }
+          >
+            
+          </Text>
+        </View>
+      </View>
+    </View>
+  </View>
+</RCTScrollView>
+`;

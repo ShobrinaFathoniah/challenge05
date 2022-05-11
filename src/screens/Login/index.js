@@ -1,72 +1,56 @@
-import {View, ScrollView, Alert, TouchableOpacity, Button} from 'react-native';
-import React, {useState, useEffect} from 'react';
-import {Forms, Header, Input, LoadingBar} from '../../components';
+import {
+  View,
+  ScrollView,
+  Alert,
+  TouchableOpacity,
+  StyleSheet,
+} from 'react-native';
+import React, {useState} from 'react';
+import {Button, Forms, Header, Input, LoadingBar} from '../../components';
 import TouchID from 'react-native-touch-id';
-import {Courgette} from '../../components/Fonts';
-import {navigate} from '../../helpers/navigate';
-import auth from '@react-native-firebase/auth';
+import {LibreBaskerville} from '../../components/Fonts';
+import {useDispatch, useSelector} from 'react-redux';
+import {setIsLoading} from '../../store/globalAction';
+import {sendDataLoginWithGoogle} from './redux/action';
+import {optionalConfigObject} from '../../helpers/configTouchID';
+import {moderateScale} from 'react-native-size-matters';
+import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
+import FontAwesome from 'react-native-vector-icons/FontAwesome';
+import {BLACK, DARK_PURPLE_300, RED_500, WHITE} from '../../helpers/colors';
 
-const Login = () => {
+const Login = ({navigation}) => {
   const [phoneNum, setPhoneNumber] = useState('');
-  const [loading, setLoading] = useState(false);
-  // If null, no SMS has been sent
-  const [confirm, setConfirm] = useState(null);
+  const dispatch = useDispatch();
+  const {isLoading} = useSelector(state => state.global);
 
-  const [code, setCode] = useState('');
-
-  // // Set an initializing state whilst Firebase connects
-  // const [initializing, setInitializing] = useState(true);
-  const [users, setUser] = useState();
-
-  useEffect(() => {
-    // Handle user state changes
-    function onAuthStateChanged(user) {
-      setUser(user);
-    }
-
-    const subscriber = auth().onAuthStateChanged(onAuthStateChanged);
-    console.log(subscriber);
-
-    return subscriber; // unsubscribe on unmount
-  }, []);
-
-  if (users && confirm) {
-    console.log(users);
-    navigate('MainApp');
-  }
-
-  // Handle the button press
-  async function signInWithPhoneNumber(phoneNumber) {
-    setLoading(true);
+  // Handle the button press SignIn with phone Number
+  const signInWithPhoneNumber = async phoneNumber => {
+    dispatch(setIsLoading(true));
     console.log(phoneNumber);
-    const confirmation = await auth().signInWithPhoneNumber(phoneNumber);
-    setConfirm(confirmation);
-    if (confirm) {
-      setLoading(false);
-    }
-  }
+    dispatch(setIsLoading(false));
+    navigation.navigate('Code OTP', {phoneNumber: phoneNumber});
+  };
 
-  async function confirmCode() {
-    setLoading(true);
+  //authentic button
+  const _pressHandler = () => {
+    TouchID.authenticate(
+      'Please Place your Hand in the Touch Sensor Area',
+      optionalConfigObject,
+    )
+      .then(() => {
+        console.log('Authenticated Successfully');
+        navigation.navigate('MainApp');
+      })
+      .catch(() => {
+        Alert.alert('Authentication Failed');
+      });
+  };
 
-    try {
-      await confirm.confirm(code);
-      console.log(await confirm.confirm(code));
-      navigate('MainApp');
-      setLoading(false);
-    } catch (error) {
-      setLoading(false);
-      console.log('Invalid code.');
-      console.log(error);
-    }
-  }
-
+  //Check support TouchID
   TouchID.isSupported(optionalConfigObject)
     .then(biometryType => {
       // Success code
-      if (biometryType === 'FaceID') {
-        console.log('FaceID is supported.');
-      } else {
+      if (biometryType === 'TouchID') {
         console.log('TouchID is supported.');
       }
     })
@@ -75,71 +59,84 @@ const Login = () => {
       console.log(error);
     });
 
-  const _pressHandler = () => {
-    TouchID.authenticate(
-      'to demo this react-native component',
-      optionalConfigObject,
-    )
-      .then(() => {
-        console.log('Authenticated Successfully');
-        navigate('MainApp');
-      })
-      .catch(() => {
-        Alert.alert('Authentication Failed');
-      });
-  };
-
-  const optionalConfigObject = {
-    title: 'Authentication Required', // Android
-    imageColor: '#e00606', // Android
-    imageErrorColor: '#ff0000', // Android
-    sensorDescription: 'Touch sensor', // Android
-    sensorErrorDescription: 'Failed', // Android
-    cancelText: 'Cancel', // Android
-    fallbackLabel: 'Show Passcode', // iOS (if empty, then label is hidden)
-    unifiedErrors: false, // use unified error messages (default false)
-    passcodeFallback: false, // iOS - allows the device to fall back to using the passcode, if faceid/touch is not available. this does not mean that if touchid/faceid fails the first few times it will revert to passcode, rather that if the former are not enrolled, then it will use the passcode.
+  const signIn = () => {
+    dispatch(sendDataLoginWithGoogle(navigation));
   };
 
   const loginScreen = () => {
     return (
       <View testID="LoginScreen">
-        <Forms type="Login" onPressButton={() => confirmCode()}>
-          <View>
+        <Forms type="Login" hideButton={true}>
+          <View style={styles.twoColumns}>
             <Input
               testID="phoneNumberForm"
               onChangeText={value => setPhoneNumber(value)}
               value={phoneNum}
+              keyboardType="number-pad"
+              style={styles.inputWidth}
               placeholder="Phone Number"
             />
-            <Input
-              testID="CodeForm"
-              value={code}
-              onChangeText={text => setCode(text)}
-              placeholder="Code"
+            <Button
+              text="SignIn"
+              style={styles.inputWidth}
+              onPressButton={() => signInWithPhoneNumber(phoneNum)}
             />
           </View>
         </Forms>
-        <TouchableOpacity onPress={_pressHandler}>
-          <Courgette>Authenticate with Touch ID</Courgette>
-        </TouchableOpacity>
         <View>
-          <Button
-            title="Phone Number Sign In"
-            onPress={() => signInWithPhoneNumber(phoneNum)}
-          />
+          <LibreBaskerville style={styles.text}>Or Login With</LibreBaskerville>
         </View>
-        {LoadingBar(loading)}
+        <View style={styles.twoColumns}>
+          <TouchableOpacity style={styles.button} onPress={_pressHandler}>
+            <FontAwesome5
+              name="fingerprint"
+              color={DARK_PURPLE_300}
+              size={24}
+            />
+          </TouchableOpacity>
+          <TouchableOpacity style={styles.button} onPress={signIn}>
+            <FontAwesome name="google" color={RED_500} size={24} />
+          </TouchableOpacity>
+        </View>
+        {LoadingBar(isLoading)}
       </View>
     );
   };
 
   return (
     <ScrollView>
-      <Header radiusBottom={true} />
+      <Header radiusBottom={true} text="Login" />
       {loginScreen()}
     </ScrollView>
   );
 };
+
+const styles = StyleSheet.create({
+  center: {
+    alignSelf: 'center',
+  },
+  inputWidth: {
+    width: moderateScale(140),
+  },
+  twoColumns: {
+    flexDirection: 'row',
+    alignSelf: 'center',
+  },
+  googleButton: {
+    width: moderateScale(50),
+  },
+  button: {
+    padding: moderateScale(10),
+    borderRadius: moderateScale(3),
+    backgroundColor: WHITE,
+    margin: moderateScale(10),
+  },
+  text: {
+    color: BLACK,
+    fontSize: 13,
+    alignSelf: 'center',
+    marginTop: moderateScale(15),
+  },
+});
 
 export default Login;
