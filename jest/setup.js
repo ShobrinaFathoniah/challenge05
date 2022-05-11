@@ -53,6 +53,8 @@ jest.mock('@react-native-community/geolocation', () => {
 
 jest.mock('react-native/Libraries/EventEmitter/NativeEventEmitter');
 
+jest.mock('react-native-android-location-enabler');
+
 jest.mock('@react-navigation/native', () => ({
   useNavigation: () => {
     return {navigate: jest.fn()};
