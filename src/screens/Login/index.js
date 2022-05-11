@@ -1,13 +1,71 @@
-import {View, ScrollView, Alert, TouchableOpacity} from 'react-native';
-import React, {useState} from 'react';
-import {Forms, Header, Input} from '../../components';
+import {View, ScrollView, Alert, TouchableOpacity, Button} from 'react-native';
+import React, {useState, useEffect} from 'react';
+import {Forms, Header, Input, LoadingBar} from '../../components';
 import TouchID from 'react-native-touch-id';
 import {Courgette} from '../../components/Fonts';
 import {navigate} from '../../helpers/navigate';
+import auth from '@react-native-firebase/auth';
 
-const Login = ({navigation}) => {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+const Login = () => {
+  const [phoneNum, setPhoneNumber] = useState('');
+  const [loading, setLoading] = useState(false);
+  // If null, no SMS has been sent
+  const [confirm, setConfirm] = useState(null);
+
+  const [code, setCode] = useState('');
+
+  // Set an initializing state whilst Firebase connects
+  const [initializing, setInitializing] = useState(true);
+  const [users, setUser] = useState(false);
+
+  useEffect(() => {
+    // Handle user state changes
+    function onAuthStateChanged(user) {
+      setUser(user);
+      if (initializing) {
+        setInitializing(false);
+      }
+    }
+    const subscriber = auth().onAuthStateChanged(onAuthStateChanged);
+    console.log(subscriber);
+
+    return subscriber; // unsubscribe on unmount
+  }, [initializing]);
+
+  if (initializing) {
+    return null;
+  }
+
+  if (users.phoneNumber === `${phoneNum}` && confirm) {
+    console.log(users);
+    navigate('MainApp');
+  }
+
+  // Handle the button press
+  async function signInWithPhoneNumber(phoneNumber) {
+    setLoading(true);
+    console.log(phoneNumber);
+    const confirmation = await auth().signInWithPhoneNumber(phoneNumber);
+    setConfirm(confirmation);
+    if (confirm) {
+      setLoading(false);
+    }
+  }
+
+  async function confirmCode() {
+    setLoading(true);
+
+    try {
+      await confirm.confirm(code);
+      console.log(await confirm.confirm(code));
+      navigate('MainApp');
+      setLoading(false);
+    } catch (error) {
+      setLoading(false);
+      console.log('Invalid code.');
+      console.log(error);
+    }
+  }
 
   TouchID.isSupported(optionalConfigObject)
     .then(biometryType => {
@@ -52,28 +110,32 @@ const Login = ({navigation}) => {
   const loginScreen = () => {
     return (
       <View testID="LoginScreen">
-        <Forms
-          type="Login"
-          onPressButton={() => navigation.navigate('MainApp')}>
+        <Forms type="Login" onPressButton={() => confirmCode()}>
           <View>
             <Input
-              testID="emailForm"
-              onChangeText={value => setEmail(value)}
-              value={email}
-              placeholder="Email"
+              testID="phoneNumberForm"
+              onChangeText={value => setPhoneNumber(value)}
+              value={phoneNum}
+              placeholder="Phone Number"
             />
             <Input
-              testID="passwordForm"
-              onChangeText={value => setPassword(value)}
-              value={password}
-              placeholder="Password"
-              secureTextEntry={true}
+              testID="CodeForm"
+              value={code}
+              onChangeText={text => setCode(text)}
+              placeholder="Code"
             />
           </View>
         </Forms>
         <TouchableOpacity onPress={_pressHandler}>
           <Courgette>Authenticate with Touch ID</Courgette>
         </TouchableOpacity>
+        <View>
+          <Button
+            title="Phone Number Sign In"
+            onPress={() => signInWithPhoneNumber(phoneNum)}
+          />
+        </View>
+        {LoadingBar(loading)}
       </View>
     );
   };
