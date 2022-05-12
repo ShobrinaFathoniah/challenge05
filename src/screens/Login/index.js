@@ -16,7 +16,14 @@ import {optionalConfigObject} from '../../helpers/configTouchID';
 import {moderateScale} from 'react-native-size-matters';
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
-import {BLACK, DARK_PURPLE_300, RED_500, WHITE} from '../../helpers/colors';
+import {
+  BLACK,
+  DARK_PURPLE_100_trans,
+  DARK_PURPLE_300,
+  RED_500,
+  WHITE,
+} from '../../helpers/colors';
+import {isPhoneNumberValid} from '../../helpers/validationData';
 
 const Login = ({navigation}) => {
   const [phoneNum, setPhoneNumber] = useState('');
@@ -63,10 +70,22 @@ const Login = ({navigation}) => {
     dispatch(sendDataLoginWithGoogle(navigation));
   };
 
+  const phoneNumberChecker = phone => {
+    if (!isPhoneNumberValid(phone) && phone.length > 0) {
+      return (
+        <LibreBaskerville style={styles.erorText}>
+          Phone Number isn't Valid! use +62
+        </LibreBaskerville>
+      );
+    }
+  };
+
   const loginScreen = () => {
     return (
       <View testID="LoginScreen">
         <Forms type="Login" hideButton={true}>
+          {phoneNumberChecker(phoneNum)}
+
           <View style={styles.twoColumns}>
             <Input
               testID="phoneNumberForm"
@@ -136,6 +155,16 @@ const styles = StyleSheet.create({
     fontSize: 13,
     alignSelf: 'center',
     marginTop: moderateScale(15),
+  },
+  erorText: {
+    color: RED_500,
+    fontSize: moderateScale(12),
+    textAlign: 'center',
+    padding: moderateScale(10),
+    backgroundColor: DARK_PURPLE_100_trans,
+    borderRadius: moderateScale(5),
+    width: moderateScale(270),
+    alignSelf: 'center',
   },
 });
 
