@@ -7,7 +7,7 @@ import {useIsFocused} from '@react-navigation/native';
 
 const Home = () => {
   //analytics
-  const isFocused = useIsFocused;
+  const isFocused = useIsFocused();
 
   const focused = async () => {
     if (isFocused) {
