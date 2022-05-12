@@ -5,7 +5,7 @@ import {
   TouchableOpacity,
   StyleSheet,
 } from 'react-native';
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {Button, Forms, Header, Input, LoadingBar} from '../../components';
 import TouchID from 'react-native-touch-id';
 import {LibreBaskerville} from '../../components/Fonts';
@@ -29,6 +29,18 @@ const Login = ({navigation}) => {
   const [phoneNum, setPhoneNumber] = useState('');
   const dispatch = useDispatch();
   const {isLoading} = useSelector(state => state.global);
+  const {dataUserGoogle, dataUser} = useSelector(state => state.login);
+
+  useEffect(() => {
+    //check data
+    const chekData = () => {
+      if (dataUserGoogle.user !== null || dataUser.user !== null) {
+        navigation.navigate('MainApp');
+      }
+    };
+
+    chekData();
+  }, [dataUserGoogle.user, dataUser.user, navigation]);
 
   // Handle the button press SignIn with phone Number
   const signInWithPhoneNumber = async phoneNumber => {
@@ -56,13 +68,11 @@ const Login = ({navigation}) => {
   //Check support TouchID
   TouchID.isSupported(optionalConfigObject)
     .then(biometryType => {
-      // Success code
       if (biometryType === 'TouchID') {
         console.log('TouchID is supported.');
       }
     })
     .catch(error => {
-      // Failure code
       console.log(error);
     });
 
@@ -140,9 +150,6 @@ const styles = StyleSheet.create({
   twoColumns: {
     flexDirection: 'row',
     alignSelf: 'center',
-  },
-  googleButton: {
-    width: moderateScale(50),
   },
   button: {
     padding: moderateScale(10),

@@ -1,8 +1,8 @@
 import {CONFIRM_CODE, SET_DATA_USER, SET_DATA_USER_GOOGLE} from './types';
 
 const initialState = {
-  dataUser: {},
-  dataUserGoogle: {},
+  dataUser: {user: null},
+  dataUserGoogle: {user: null},
   confirmCode: null,
 };
 

@@ -4,6 +4,7 @@ import React from 'react';
 import {Home, Login, Maps, OTP, QRCode, WebViews} from '../screens';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import Fontisto from 'react-native-vector-icons/Fontisto';
+import Profile from '../screens/Profile';
 
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -66,6 +67,16 @@ const MainApp = () => (
       }}
       name="Maps"
       component={Maps}
+    />
+    <Tab.Screen
+      options={{
+        tabBarLabel: 'Profile',
+        tabBarIcon: ({color, size}) => (
+          <AntDesign name="user" color={color} size={size} />
+        ),
+      }}
+      name="Profile"
+      component={Profile}
     />
   </Tab.Navigator>
 );
