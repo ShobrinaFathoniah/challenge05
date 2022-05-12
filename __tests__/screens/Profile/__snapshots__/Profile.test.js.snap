@@ -1,0 +1,183 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Test Snapshoot Profile Snapshoot 1`] = `
+<View
+  style={
+    Object {
+      "flex": 1,
+    }
+  }
+>
+  <View
+    style={
+      Object {
+        "alignItems": "center",
+        "backgroundColor": "#8180b7",
+        "borderBottomEndRadius": 150,
+        "borderBottomStartRadius": 150,
+        "flexDirection": "row",
+        "justifyContent": "center",
+      }
+    }
+  >
+    <Text
+      style={
+        Array [
+          Object {
+            "fontFamily": "PassionsConflict-Regular",
+          },
+          Object {
+            "color": "#000000",
+            "fontSize": 66,
+            "letterSpacing": 3.142857142857143,
+            "margin": 15.714285714285714,
+            "textAlign": "center",
+          },
+        ]
+      }
+    >
+      Profile
+    </Text>
+  </View>
+  <View
+    style={
+      Object {
+        "flex": 1,
+      }
+    }
+  >
+    <Image
+      source={
+        Object {
+          "testUri": "../../../src/assets/Image/creativity.png",
+        }
+      }
+      style={
+        Object {
+          "alignSelf": "center",
+          "height": 471.42857142857144,
+          "margin": 15.714285714285714,
+          "width": 471.42857142857144,
+        }
+      }
+    />
+    <Text
+      ellipsizeMode="tail"
+      numberOfLines={0}
+      style={
+        Array [
+          Object {
+            "fontFamily": "LibreBaskerville-Regular",
+          },
+          Object {
+            "alignSelf": "center",
+            "color": "#000000",
+            "fontSize": 22,
+            "margin": 15.714285714285714,
+            "textAlign": "center",
+          },
+        ]
+      }
+    >
+      You're login using fingerprint, to see this page, you must login using Google Account
+    </Text>
+    <View
+      style={
+        Object {
+          "alignSelf": "center",
+          "flexDirection": "row",
+        }
+      }
+    >
+      <View
+        accessible={true}
+        collapsable={false}
+        focusable={true}
+        onClick={[Function]}
+        onResponderGrant={[Function]}
+        onResponderMove={[Function]}
+        onResponderRelease={[Function]}
+        onResponderTerminate={[Function]}
+        onResponderTerminationRequest={[Function]}
+        onStartShouldSetResponder={[Function]}
+        style={
+          Object {
+            "alignSelf": "center",
+            "backgroundColor": "#FFFFFF",
+            "borderRadius": 4.714285714285714,
+            "margin": 15.714285714285714,
+            "opacity": 1,
+            "padding": 15.714285714285714,
+          }
+        }
+      >
+        <Text
+          allowFontScaling={false}
+          selectable={false}
+          style={
+            Array [
+              Object {
+                "color": "#c4131e",
+                "fontSize": 24,
+              },
+              undefined,
+              Object {
+                "fontFamily": "FontAwesome",
+                "fontStyle": "normal",
+                "fontWeight": "normal",
+              },
+              Object {},
+            ]
+          }
+        >
+          
+        </Text>
+      </View>
+      <View
+        accessible={true}
+        collapsable={false}
+        focusable={true}
+        onClick={[Function]}
+        onResponderGrant={[Function]}
+        onResponderMove={[Function]}
+        onResponderRelease={[Function]}
+        onResponderTerminate={[Function]}
+        onResponderTerminationRequest={[Function]}
+        onStartShouldSetResponder={[Function]}
+        style={
+          Object {
+            "alignSelf": "center",
+            "backgroundColor": "#FFFFFF",
+            "borderRadius": 4.714285714285714,
+            "margin": 15.714285714285714,
+            "opacity": 1,
+            "padding": 15.714285714285714,
+          }
+        }
+      >
+        <Text
+          allowFontScaling={false}
+          selectable={false}
+          style={
+            Array [
+              Object {
+                "color": "#535487",
+                "fontSize": 24,
+              },
+              undefined,
+              Object {
+                "fontFamily": "anticon",
+                "fontStyle": "normal",
+                "fontWeight": "normal",
+              },
+              Object {},
+            ]
+          }
+        >
+          
+        </Text>
+      </View>
+    </View>
+  </View>
+</View>
+`;
