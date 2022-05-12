@@ -1,9 +1,31 @@
 import React, {useEffect} from 'react';
-import {View, Button} from 'react-native';
+import {View, Button, Alert, BackHandler} from 'react-native';
 import crashlytics from '@react-native-firebase/crashlytics';
 import analytics from '@react-native-firebase/analytics';
 
 const Home = () => {
+  // tombol exit
+  const exit = () => {
+    const backAction = () => {
+      Alert.alert('Hold on!', 'Do you want to exit the application?', [
+        {
+          text: 'Cancel',
+          onPress: () => null,
+          style: 'cancel',
+        },
+        {text: 'YES', onPress: () => BackHandler.exitApp()},
+      ]);
+      return true;
+    };
+
+    const backHandler = BackHandler.addEventListener(
+      'hardwareBackPress',
+      backAction,
+    );
+
+    return () => backHandler.remove();
+  };
+
   const onSignIn = async user => {
     crashlytics().log('User signed in.');
     await Promise.all([
@@ -19,6 +41,7 @@ const Home = () => {
   };
 
   useEffect(() => {
+    exit();
     crashlytics().log('App mounted.');
   }, []);
 

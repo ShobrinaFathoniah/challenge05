@@ -1,7 +1,7 @@
 import {createStackNavigator} from '@react-navigation/stack';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import React from 'react';
-import {Home, Login, Maps, OTP, QRCode} from '../screens';
+import {Home, Login, Maps, OTP, QRCode, WebViews} from '../screens';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import Fontisto from 'react-native-vector-icons/Fontisto';
 
@@ -24,6 +24,11 @@ const MainStack = () => {
       <Stack.Screen
         name="MainApp"
         component={MainApp}
+        options={{headerShown: false}}
+      />
+      <Stack.Screen
+        name="WebViews"
+        component={WebViews}
         options={{headerShown: false}}
       />
     </Stack.Navigator>

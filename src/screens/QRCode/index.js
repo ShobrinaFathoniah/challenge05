@@ -1,12 +1,13 @@
-import {View, Alert} from 'react-native';
+import {View} from 'react-native';
 import React from 'react';
 import {CameraScreen, CameraType} from 'react-native-camera-kit';
 // import {useIsFocused} from '@react-navigation/native';
 
-const QRCode = () => {
+const QRCode = ({navigation}) => {
   // const isFocused = useIsFocused();
   const onReadCode = data => {
-    Alert.alert('Notification', data.nativeEvent.codeStringValue);
+    console.log(data.nativeEvent.codeStringValue);
+    navigation.navigate('WebViews', {uri: data.nativeEvent.codeStringValue});
   };
   return (
     <View>
