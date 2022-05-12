@@ -57,11 +57,11 @@ const Login = ({navigation}) => {
       optionalConfigObject,
     )
       .then(() => {
-        console.log('Authenticated Successfully');
+        Alert.alert('Notication', 'Authenticated Successfully');
         navigation.navigate('MainApp');
       })
       .catch(() => {
-        Alert.alert('Authentication Failed');
+        Alert.alert('Notification', 'Authentication Failed');
       });
   };
 
@@ -69,11 +69,12 @@ const Login = ({navigation}) => {
   TouchID.isSupported(optionalConfigObject)
     .then(biometryType => {
       if (biometryType === 'TouchID') {
-        console.log('TouchID is supported.');
+        console.log('support');
       }
     })
     .catch(error => {
       console.log(error);
+      Alert.alert('Notification', 'TouchID is not supported.');
     });
 
   const signIn = () => {
