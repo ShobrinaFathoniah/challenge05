@@ -1,3 +1,5 @@
+jest.useFakeTimers();
+
 import React from 'react';
 import QRCode from '../../../src/screens/QRCode';
 import {create} from 'react-test-renderer';

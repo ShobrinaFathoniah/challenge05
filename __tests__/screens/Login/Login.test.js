@@ -1,3 +1,5 @@
+jest.useFakeTimers();
+
 import React from 'react';
 import Login from '../../../src/screens/Login';
 import {create} from 'react-test-renderer';
