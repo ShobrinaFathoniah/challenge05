@@ -3,10 +3,28 @@ import React, {useState} from 'react';
 import {WebView} from 'react-native-webview';
 import {CircleButton} from '../../components';
 import {moderateScale} from 'react-native-size-matters';
+import {useIsFocused} from '@react-navigation/native';
+import analytics from '@react-native-firebase/analytics';
 
 const WebViews = ({route, navigation}) => {
   const uri = route.params.uri;
   const [webview, setWebView] = useState(null);
+  const isFocused = useIsFocused();
+
+  const focused = async () => {
+    if (isFocused) {
+      console.log('focused');
+
+      await analytics().logScreenView({
+        screen_class: 'WebViews',
+        screen_name: 'WebViews',
+      });
+    } else {
+      console.log('not focused');
+    }
+  };
+
+  focused();
 
   return (
     <View style={styles.container}>

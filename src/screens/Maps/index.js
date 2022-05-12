@@ -9,8 +9,27 @@ import React, {useEffect, useState} from 'react';
 import MapView, {Marker} from 'react-native-maps';
 import Geolocation from '@react-native-community/geolocation';
 import RNAndroidLocationEnabler from 'react-native-android-location-enabler';
+import {useIsFocused} from '@react-navigation/native';
+import analytics from '@react-native-firebase/analytics';
 
 const Maps = () => {
+  const isFocused = useIsFocused();
+
+  const focused = async () => {
+    if (isFocused) {
+      console.log('focused');
+
+      await analytics().logScreenView({
+        screen_class: 'Maps',
+        screen_name: 'Maps',
+      });
+    } else {
+      console.log('not focused');
+    }
+  };
+
+  focused();
+
   const [region, setRegion] = useState({
     coords: {
       latitude: 0,

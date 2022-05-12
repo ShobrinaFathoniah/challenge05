@@ -24,12 +24,30 @@ import {
   WHITE,
 } from '../../helpers/colors';
 import {isPhoneNumberValid} from '../../helpers/validationData';
+import {useIsFocused} from '@react-navigation/native';
+import analytics from '@react-native-firebase/analytics';
 
 const Login = ({navigation}) => {
   const [phoneNum, setPhoneNumber] = useState('');
   const dispatch = useDispatch();
   const {isLoading} = useSelector(state => state.global);
   const {dataUserGoogle, dataUser} = useSelector(state => state.login);
+  const isFocused = useIsFocused;
+
+  const focused = async () => {
+    if (isFocused) {
+      console.log('focused');
+
+      await analytics().logScreenView({
+        screen_class: 'Login',
+        screen_name: 'Login',
+      });
+    } else {
+      console.log('not focused');
+    }
+  };
+
+  focused();
 
   useEffect(() => {
     //check data

@@ -5,6 +5,8 @@ import {sendDataLoginWithPhoneNumber, setConfirm} from '../Login/redux/action';
 import {setIsLoading} from '../../store/globalAction';
 import auth from '@react-native-firebase/auth';
 import {Button, Forms, Input, LoadingBar} from '../../components';
+import {useIsFocused} from '@react-navigation/native';
+import analytics from '@react-native-firebase/analytics';
 
 const OTP = ({route, navigation}) => {
   const [code, setCode] = useState('');
@@ -12,6 +14,22 @@ const OTP = ({route, navigation}) => {
   const confirm = useSelector(state => state.login.confirmCode);
   const {isLoading} = useSelector(state => state.global);
   const phoneNum = route.params.phoneNumber;
+  const isFocused = useIsFocused();
+
+  const focused = async () => {
+    if (isFocused) {
+      console.log('focused');
+
+      await analytics().logScreenView({
+        screen_class: 'OTP',
+        screen_name: 'OTP',
+      });
+    } else {
+      console.log('not focused');
+    }
+  };
+
+  focused();
 
   useEffect(() => {
     const signInPhone = async () => {

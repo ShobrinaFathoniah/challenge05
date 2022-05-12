@@ -13,10 +13,28 @@ import {
   setDataUserWithGoogle,
 } from '../Login/redux/action';
 import {loginPic} from '../../assets';
+import {useIsFocused} from '@react-navigation/native';
+import analytics from '@react-native-firebase/analytics';
 
 const Profile = ({navigation}) => {
   const {dataUserGoogle, dataUser} = useSelector(state => state.login);
   const dispatch = useDispatch();
+  const isFocused = useIsFocused;
+
+  const focused = async () => {
+    if (isFocused) {
+      console.log('focused');
+
+      await analytics().logScreenView({
+        screen_class: 'Profile',
+        screen_name: 'Profile',
+      });
+    } else {
+      console.log('not focused');
+    }
+  };
+
+  focused();
 
   const signInWithGoogle = () => {
     dispatch(sendDataLoginWithGoogle(navigation));

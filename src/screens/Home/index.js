@@ -2,8 +2,28 @@ import React, {useEffect} from 'react';
 import {View, Button, Alert, BackHandler} from 'react-native';
 import crashlytics from '@react-native-firebase/crashlytics';
 import analytics from '@react-native-firebase/analytics';
+import messaging from '@react-native-firebase/messaging';
+import {useIsFocused} from '@react-navigation/native';
 
 const Home = () => {
+  //analytics
+  const isFocused = useIsFocused;
+
+  const focused = async () => {
+    if (isFocused) {
+      console.log('focused');
+
+      await analytics().logScreenView({
+        screen_class: 'Home',
+        screen_name: 'Home',
+      });
+    } else {
+      console.log('not focused');
+    }
+  };
+
+  focused();
+
   // tombol exit
   const exit = () => {
     const backAction = () => {
@@ -64,14 +84,16 @@ const Home = () => {
       <View>
         <Button
           title="Add To Basket"
-          onPress={async () =>
-            await analytics().logEvent('basket', {
+          onPress={async () => {
+            await analytics().logEvent('login', {
               id: 3745092,
               item: 'mens grey t-shirt',
               description: ['round neck', 'long sleeved'],
               size: 'L',
-            })
-          }
+            });
+            const token = await messaging().getToken();
+            console.log(token, 'token');
+          }}
         />
       </View>
     </View>

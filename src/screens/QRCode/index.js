@@ -1,8 +1,26 @@
 import {View} from 'react-native';
 import React from 'react';
 import {CameraScreen, CameraType} from 'react-native-camera-kit';
+import {useIsFocused} from '@react-navigation/native';
+import analytics from '@react-native-firebase/analytics';
 
 const QRCode = ({navigation}) => {
+  const isFocused = useIsFocused;
+
+  const focused = async () => {
+    if (isFocused) {
+      console.log('focused');
+
+      await analytics().logScreenView({
+        screen_class: 'QRCode',
+        screen_name: 'QRCode',
+      });
+    } else {
+      console.log('not focused');
+    }
+  };
+
+  focused();
   const onReadCode = data => {
     navigation.navigate('WebViews', {uri: data.nativeEvent.codeStringValue});
   };
