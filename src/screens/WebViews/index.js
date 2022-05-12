@@ -7,7 +7,6 @@ import {moderateScale} from 'react-native-size-matters';
 const WebViews = ({route, navigation}) => {
   const uri = route.params.uri;
   const [webview, setWebView] = useState(null);
-  console.log(uri);
 
   return (
     <View style={styles.container}>

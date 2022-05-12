@@ -1,12 +1,9 @@
 import {View} from 'react-native';
 import React from 'react';
 import {CameraScreen, CameraType} from 'react-native-camera-kit';
-// import {useIsFocused} from '@react-navigation/native';
 
 const QRCode = ({navigation}) => {
-  // const isFocused = useIsFocused();
   const onReadCode = data => {
-    console.log(data.nativeEvent.codeStringValue);
     navigation.navigate('WebViews', {uri: data.nativeEvent.codeStringValue});
   };
   return (

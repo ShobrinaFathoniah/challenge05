@@ -33,7 +33,7 @@ export const sendDataLoginWithPhoneNumber =
 
 export const sendDataLoginWithGoogle = navigation => async dispatch => {
   GoogleSignin.configure({
-    webClientId: client_id, // client ID of type WEB for your server (needed to verify user ID and offline access)
+    webClientId: client_id,
   });
 
   try {
@@ -60,14 +60,11 @@ export const sendDataLoginWithGoogle = navigation => async dispatch => {
     }
   } catch (error) {
     if (error.code === statusCodes.SIGN_IN_CANCELLED) {
-      // user cancelled the login flow
       dispatch(setIsLoading(false));
       Alert.alert('Notification', 'Login Canceled');
     } else if (error.code === statusCodes.IN_PROGRESS) {
-      // operation (e.g. sign in) is in progress already
       dispatch(setIsLoading(true));
     } else if (error.code === statusCodes.PLAY_SERVICES_NOT_AVAILABLE) {
-      // play services not available or outdated
       dispatch(setIsLoading(false));
       Alert.alert(
         'Notification',
@@ -75,7 +72,6 @@ export const sendDataLoginWithGoogle = navigation => async dispatch => {
       );
     } else {
       dispatch(setIsLoading(false));
-      // some other error happened
       Alert.alert('Notification', `${error}`);
     }
   }
