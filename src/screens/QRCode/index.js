@@ -5,7 +5,7 @@ import {useIsFocused} from '@react-navigation/native';
 import analytics from '@react-native-firebase/analytics';
 
 const QRCode = ({navigation}) => {
-  const isFocused = useIsFocused;
+  const isFocused = useIsFocused();
 
   const focused = async () => {
     if (isFocused) {

@@ -19,7 +19,7 @@ import analytics from '@react-native-firebase/analytics';
 const Profile = ({navigation}) => {
   const {dataUserGoogle, dataUser} = useSelector(state => state.login);
   const dispatch = useDispatch();
-  const isFocused = useIsFocused;
+  const isFocused = useIsFocused();
 
   const focused = async () => {
     if (isFocused) {

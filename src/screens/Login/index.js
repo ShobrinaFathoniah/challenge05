@@ -32,7 +32,7 @@ const Login = ({navigation}) => {
   const dispatch = useDispatch();
   const {isLoading} = useSelector(state => state.global);
   const {dataUserGoogle, dataUser} = useSelector(state => state.login);
-  const isFocused = useIsFocused;
+  const isFocused = useIsFocused();
 
   const focused = async () => {
     if (isFocused) {
