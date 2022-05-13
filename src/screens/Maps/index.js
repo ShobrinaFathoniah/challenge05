@@ -18,6 +18,7 @@ const Maps = () => {
   const focused = async () => {
     if (isFocused) {
       console.log('focused');
+      onRegionChange();
 
       await analytics().logScreenView({
         screen_class: 'Maps',
@@ -61,9 +62,8 @@ const Maps = () => {
       const granted = await PermissionsAndroid.request(
         PermissionsAndroid.PERMISSIONS.ACCESS_FINE_LOCATION,
         {
-          title: 'Ridesharer Geolocation Permission',
-          message:
-            'Ridesharer needs access to your current location so you can share or search for a ride',
+          title: 'This Apps needs Geolocation Permission',
+          message: 'This Apps needs access to your current location ',
         },
       );
       if (granted === PermissionsAndroid.RESULTS.GRANTED) {

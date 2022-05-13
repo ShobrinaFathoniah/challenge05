@@ -7,9 +7,12 @@ import {
   statusCodes,
 } from '@react-native-google-signin/google-signin';
 import {client_id} from '@env';
+import {useSelector} from 'react-redux';
 
 export const sendDataLoginWithPhoneNumber =
   (confirmPhoneNumber, navigation) => async dispatch => {
+    const {dataUser} = useSelector(state => state.login);
+
     try {
       dispatch(setIsLoading(true));
 
@@ -21,11 +24,12 @@ export const sendDataLoginWithPhoneNumber =
       console.log(subscriber);
       dispatch(setIsLoading(false));
 
-      if (confirmPhoneNumber) {
+      if (dataUser && confirmPhoneNumber) {
         dispatch(setIsLoading(false));
         navigation.navigate('MainApp');
       }
     } catch (error) {
+      console.log('sendDataLoginWithPhoneNumber', error);
       Alert.alert('Pemberitahuan', `${error}`);
       dispatch(setIsLoading(false));
     }
@@ -74,6 +78,15 @@ export const sendDataLoginWithGoogle = navigation => async dispatch => {
       dispatch(setIsLoading(false));
       Alert.alert('Notification', `${error}`);
     }
+  }
+};
+
+export const logOutFromGoogle = () => async () => {
+  try {
+    await GoogleSignin.hasPlayServices();
+    await GoogleSignin.signOut();
+  } catch (error) {
+    Alert.alert('Notification', error);
   }
 };
 

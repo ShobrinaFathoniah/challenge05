@@ -31,7 +31,7 @@ const Login = ({navigation}) => {
   const [phoneNum, setPhoneNumber] = useState('');
   const dispatch = useDispatch();
   const {isLoading} = useSelector(state => state.global);
-  const {dataUserGoogle, dataUser} = useSelector(state => state.login);
+  const {dataUserGoogle} = useSelector(state => state.login);
   const isFocused = useIsFocused();
 
   const focused = async () => {
@@ -52,20 +52,24 @@ const Login = ({navigation}) => {
   useEffect(() => {
     //check data
     const chekData = () => {
-      if (dataUserGoogle.user !== null || dataUser.user !== null) {
+      if (dataUserGoogle.user !== null) {
         navigation.navigate('MainApp');
       }
     };
 
     chekData();
-  }, [dataUserGoogle.user, dataUser.user, navigation]);
+  }, [dataUserGoogle.user, navigation]);
 
   // Handle the button press SignIn with phone Number
   const signInWithPhoneNumber = async phoneNumber => {
-    dispatch(setIsLoading(true));
-    console.log(phoneNumber);
-    dispatch(setIsLoading(false));
-    navigation.navigate('Code OTP', {phoneNumber: phoneNumber});
+    if (isPhoneNumberValid(phoneNumber)) {
+      dispatch(setIsLoading(true));
+      console.log(phoneNumber);
+      dispatch(setIsLoading(false));
+      navigation.navigate('Code OTP', {phoneNumber: phoneNumber});
+    } else {
+      Alert.alert('Notication', 'Tolong Isi Field Phone Number');
+    }
   };
 
   //authentic button

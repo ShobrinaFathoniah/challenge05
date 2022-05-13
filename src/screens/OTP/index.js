@@ -33,8 +33,12 @@ const OTP = ({route, navigation}) => {
 
   useEffect(() => {
     const signInPhone = async () => {
-      const confirmation = await auth().signInWithPhoneNumber(phoneNum);
-      dispatch(setConfirm(confirmation));
+      try {
+        const confirmation = await auth().signInWithPhoneNumber(phoneNum);
+        dispatch(setConfirm(confirmation));
+      } catch (error) {
+        console.log('confirmation', error);
+      }
     };
     signInPhone();
 

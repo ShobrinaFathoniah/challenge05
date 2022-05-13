@@ -8,6 +8,7 @@ import {BLACK, DARK_PURPLE_300, RED_500, WHITE} from '../../helpers/colors';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import {
+  logOutFromGoogle,
   sendDataLoginWithGoogle,
   setDataUser,
   setDataUserWithGoogle,
@@ -52,6 +53,7 @@ const Profile = ({navigation}) => {
   };
 
   const logOut = () => {
+    dispatch(logOutFromGoogle());
     dispatch(setDataUser({user: null}));
     dispatch(setDataUserWithGoogle({user: null}));
     navigation.navigate('Login');
@@ -109,11 +111,7 @@ const Profile = ({navigation}) => {
               {dataUser.phoneNumber}
             </LibreBaskerville>
           </View>
-          <View style={styles.containerName}>
-            <LibreBaskerville style={styles.textNama}>
-              {dataUser.email ? dataUser.email : googleButton()}
-            </LibreBaskerville>
-          </View>
+          {logOutButton()}
         </View>
       );
     } else {
