@@ -1,4 +1,4 @@
-import {View, StyleSheet} from 'react-native';
+import {View, StyleSheet, Alert} from 'react-native';
 import React, {useEffect, useState} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
 import {sendDataLoginWithPhoneNumber, setConfirm} from '../Login/redux/action';
@@ -38,6 +38,7 @@ const OTP = ({route, navigation}) => {
         dispatch(setConfirm(confirmation));
       } catch (error) {
         console.log('confirmation', error);
+        Alert.alert('Notification', `${error}`);
       }
     };
     signInPhone();
@@ -57,8 +58,10 @@ const OTP = ({route, navigation}) => {
       dispatch(setIsLoading(false));
       console.log('Invalid code.');
       console.log(error);
+      Alert.alert('Notification', `${error}`);
     }
   };
+
   return (
     <View>
       <View style={styles.center}>
