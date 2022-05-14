@@ -12,6 +12,7 @@ import {
   sendDataLoginWithGoogle,
   setDataUser,
   setDataUserWithGoogle,
+  setConfirm,
 } from '../Login/redux/action';
 import {loginPic} from '../../assets';
 import {useIsFocused} from '@react-navigation/native';
@@ -40,6 +41,7 @@ const Profile = ({navigation}) => {
   const signInWithGoogle = () => {
     dispatch(sendDataLoginWithGoogle(navigation));
     dispatch(setDataUser({user: null}));
+    dispatch(setConfirm(null));
   };
 
   const googleButton = () => {
@@ -56,6 +58,7 @@ const Profile = ({navigation}) => {
     dispatch(logOutFromGoogle());
     dispatch(setDataUser({user: null}));
     dispatch(setDataUserWithGoogle({user: null}));
+    dispatch(setConfirm(null));
     navigation.navigate('Login');
   };
 

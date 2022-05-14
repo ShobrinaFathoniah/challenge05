@@ -7,12 +7,9 @@ import {
   statusCodes,
 } from '@react-native-google-signin/google-signin';
 import {client_id} from '@env';
-import {useSelector} from 'react-redux';
 
 export const sendDataLoginWithPhoneNumber =
   (confirmPhoneNumber, navigation) => async dispatch => {
-    const {dataUser} = useSelector(state => state.login);
-
     try {
       dispatch(setIsLoading(true));
 
@@ -24,7 +21,7 @@ export const sendDataLoginWithPhoneNumber =
       console.log(subscriber);
       dispatch(setIsLoading(false));
 
-      if (dataUser && confirmPhoneNumber) {
+      if (confirmPhoneNumber) {
         dispatch(setIsLoading(false));
         navigation.navigate('MainApp');
       }
